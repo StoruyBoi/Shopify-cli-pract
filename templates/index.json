@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "hero_banner_cfG6Kn": {
+      "type": "hero-banner",
+      "blocks": {
+        "heading_xHJhW7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Unlock Exclusive Discounts, Prizes & Experiences"
+          }
+        },
+        "text_JPjGzr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-minded community.</p>"
+          }
+        },
+        "buttons_UehpEQ": {
+          "type": "buttons",
+          "settings": {
+            "button_1_text": "ENTER TO WIN",
+            "button_1_link": "",
+            "button_2_text": "SUBSCRIBE",
+            "button_2_link": ""
+          }
+        },
+        "info_line_kWPnkD": {
+          "type": "info_line",
+          "settings": {
+            "show_icon": true,
+            "info_text": "Guaranteed 5 winners every month!"
+          }
+        }
+      },
+      "block_order": [
+        "heading_xHJhW7",
+        "text_JPjGzr",
+        "buttons_UehpEQ",
+        "info_line_kWPnkD"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "background_color": "#1c2d29",
+        "text_color": "#ffffff",
+        "image": "shopify://shop_images/Placeholder_Image_7b95d156-3282-47ee-a815-f5afc53b16d3.png",
+        "mobile_image": "shopify://shop_images/0c754771f8e55efd83c26352f9b33bdec717e299_3.png",
+        "show_promo_banner": true,
+        "promo_title": "MONTHLY GIVEAWAY - CLOSING 6TH MAY",
+        "promo_text": "Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+"
+      }
+    }
+  },
+  "order": [
+    "featured_collection",
+    "hero_banner_cfG6Kn"
+  ]
+}
