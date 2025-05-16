@@ -102,20 +102,12 @@
 
 <style>
   .hero-banner {
-    background-color: {
-    {
-    section.settings.background_color
+    background-color: {{ section.settings.background_color }};
   }
-};
-}
 
-.hero-banner__content {
-  color: {
-  {
-  section.settings.text_color
-}
-};
-}
+  .hero-banner__content {
+    color: {{ section.settings.text_color }};
+  }
 </style>
 
 {% schema %}
@@ -186,7 +178,7 @@
           {
             "type": "richtext",
             "id": "text",
-            "default": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-mindedcommunity.</p> ",
+            "default": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-mindedcommunity.</p>",
             "label": "Text"
           }
         ]
