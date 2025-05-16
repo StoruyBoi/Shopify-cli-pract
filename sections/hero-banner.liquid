@@ -1,15 +1,16 @@
 {{ 'hero-banner.css' | asset_url | stylesheet_tag }}
 <section class="hero-banner">
   <div class="hero-banner__container">
-     <div class="hero-banner__content-wrapper">
+    <div class="hero-banner__content-wrapper">
       <div class="hero-banner__content">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'heading' %}
               <h2 class="hero-banner__heading" {{ block.shopify_attributes }}>
+                hello this is testign
                 {{ block.settings.heading }}
               </h2>
-            
+
             {% when 'text' %}
               <div class="hero-banner__text" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
@@ -21,14 +22,17 @@
                     {{ block.settings.button_1_text }}
                   </a>
                 {% endif %}
-                
+
                 {% if block.settings.button_2_text != blank %}
-                  <a href="{{ block.settings.button_2_link }}" target="_blank" class="hero-banner__button hero-banner__button--secondary">
+                  <a
+                    href="{{ block.settings.button_2_link }}"
+                    target="_blank"
+                    class="hero-banner__button hero-banner__button--secondary">
                     {{ block.settings.button_2_text }}
                   </a>
                 {% endif %}
               </div>
-          
+
             {% when 'info_line' %}
               <div class="hero-banner__info-line" {{ block.shopify_attributes }}>
                 {% if block.settings.show_icon %}
@@ -39,17 +43,19 @@
           {% endcase %}
         {% endfor %}
       </div>
-     </div>
+    </div>
     <div class="hero-banner__media">
       {% if section.settings.image != blank %}
         <div class="hero-banner__image-container desktop-only">
           <img
-            srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            srcset="
+              {%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
               {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
               {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
               {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
               {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | image_url: width: 2200 }} 2200w,{%- endif -%}
-              {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+              {{ section.settings.image | image_url }} {{ section.settings.image.width }}w
+            "
             src="{{ section.settings.image | image_url: width: 1500 }}"
             sizes="(min-width: 750px) 50vw, 100vw"
             alt="{{ section.settings.image.alt | escape }}"
@@ -58,18 +64,19 @@
             fetchpriority="high"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.height }}"
-            class="hero-banner__image"
-          >
+            class="hero-banner__image">
         </div>
       {% endif %}
-      
+
       {% if section.settings.mobile_image != blank %}
         <div class="hero-banner__image-container mobile-only">
           <img
-            srcset="{%- if section.settings.mobile_image.width >= 375 -%}{{ section.settings.mobile_image | image_url: width: 375 }} 375w,{%- endif -%}
+            srcset="
+              {%- if section.settings.mobile_image.width >= 375 -%}{{ section.settings.mobile_image | image_url: width: 375 }} 375w,{%- endif -%}
               {%- if section.settings.mobile_image.width >= 750 -%}{{ section.settings.mobile_image | image_url: width: 750 }} 750w,{%- endif -%}
               {%- if section.settings.mobile_image.width >= 1100 -%}{{ section.settings.mobile_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-              {{ section.settings.mobile_image | image_url }} {{ section.settings.mobile_image.width }}w"
+              {{ section.settings.mobile_image | image_url }} {{ section.settings.mobile_image.width }}w
+            "
             src="{{ section.settings.mobile_image | image_url: width: 750 }}"
             sizes="100vw"
             alt="{{ section.settings.mobile_image.alt | escape }}"
@@ -77,15 +84,16 @@
             decoding="async"
             width="{{ section.settings.mobile_image.width }}"
             height="{{ section.settings.mobile_image.height }}"
-            class="hero-banner__image"
-          >
+            class="hero-banner__image">
         </div>
       {% endif %}
-      
+
       {% if section.settings.show_promo_banner %}
         <div class="hero-banner__promo-banner">
           <span class="hero-banner__promo-title">{{ section.settings.promo_title }}</span>
-          <div class="hero-banner__promo-text"><h2>{{ section.settings.promo_text }}</h2></div>
+          <div class="hero-banner__promo-text">
+            <h2>{{ section.settings.promo_text }}</h2>
+          </div>
         </div>
       {% endif %}
     </div>
@@ -94,158 +102,153 @@
 
 <style>
   .hero-banner {
-    background-color: {{ section.settings.background_color }};
+    background-color: {
+    {
+    section.settings.background_color
   }
-  .hero-banner__content {
-    color: {{ section.settings.text_color }};
-  }
+};
+}
+
+.hero-banner__content {
+  color: {
+  {
+  section.settings.text_color
+}
+};
+}
 </style>
 
 {% schema %}
-{
-  "name": "Hero Banner",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#1c2d29"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Desktop Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile Background Image"
-    },
-    {
-      "type": "header",
-      "content": "Promo Banner"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_promo_banner",
-      "label": "Show Promo Banner",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "promo_title",
-      "label": "Promo Title",
-      "default": "MONTHLY GIVEAWAY - CLOSING 6TH MAY"
-    },
-    {
-      "type": "text",
-      "id": "promo_text",
-      "label": "Promo Text",
-      "default": "Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "heading",
-      "name": "Heading",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Unlock Exclusive Discounts, Prizes & Experiences",
-          "label": "Heading"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-minded community.</p>",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "buttons",
-      "name": "Buttons",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "button_1_text",
-          "default": "ENTER TO WIN",
-          "label": "Button 1 Text"
-        },
-        {
-          "type": "url",
-          "id": "button_1_link",
-          "label": "Button 1 Link"
-        },
-        {
-          "type": "text",
-          "id": "button_2_text",
-          "default": "SUBSCRIBE",
-          "label": "Button 2 Text"
-        },
-        {
-          "type": "url",
-          "id": "button_2_link",
-          "label": "Button 2 Link"
-        }
-      ]
-    },
-    {
-      "type": "info_line",
-      "name": "Info Line",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_icon",
-          "default": true,
-          "label": "Show Icon"
-        },
-        {
-          "type": "text",
-          "id": "info_text",
-          "default": "Guaranteed 5 winners every month!",
-          "label": "Info Text"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Hero Banner",
-      "blocks": [
-        {
-          "type": "heading"
-        },
-        {
-          "type": "text"
-        },
-        {
-          "type": "buttons"
-        },
-        {
-          "type": "info_line"
-        }
-      ]
-    }
-  ]
-}
+  {
+    "name": "Hero Banner",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#1c2d29"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Background Image"
+      }, {
+        "type": "header",
+        "content": "Promo Banner"
+      }, {
+        "type": "checkbox",
+        "id": "show_promo_banner",
+        "label": "Show Promo Banner",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "promo_title",
+        "label": "Promo Title",
+        "default": "MONTHLY GIVEAWAY - CLOSING 6TH MAY"
+      }, {
+        "type": "text",
+        "id": "promo_text",
+        "label": "Promo Text",
+        "default": "Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Unlock Exclusive Discounts, Prizes & Experiences",
+            "label": "Heading"
+          }
+        ]
+      }, {
+        "type": "text",
+        "name": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-mindedcommunity.</p> ",
+            "label": "Text"
+          }
+        ]
+      }, {
+        "type": "buttons",
+        "name": "Buttons",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_1_text",
+            "default": "ENTER TO WIN",
+            "label": "Button 1 Text"
+          }, {
+            "type": "url",
+            "id": "button_1_link",
+            "label": "Button 1 Link"
+          }, {
+            "type": "text",
+            "id": "button_2_text",
+            "default": "SUBSCRIBE",
+            "label": "Button 2 Text"
+          }, {
+            "type": "url",
+            "id": "button_2_link",
+            "label": "Button 2 Link"
+          }
+        ]
+      }, {
+        "type": "info_line",
+        "name": "Info Line",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_icon",
+            "default": true,
+            "label": "Show Icon"
+          }, {
+            "type": "text",
+            "id": "info_text",
+            "default": "Guaranteed 5 winners every month!",
+            "label": "Info Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Banner",
+        "blocks": [
+          {
+            "type": "heading"
+          }, {
+            "type": "text"
+          }, {
+            "type": "buttons"
+          }, {
+            "type": "info_line"
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}
